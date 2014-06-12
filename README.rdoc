@@ -20,6 +20,3 @@ Database Tables:
 * tickets_itineraries: Almacena todos los boletos de los clientes que van a viajar.
 
 
-
-== NO LE DEN RAKE DB:MIGRATE HASTA QUE TERMINE TODAS LAS TABLAS!
-
