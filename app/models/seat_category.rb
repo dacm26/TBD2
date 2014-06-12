@@ -1,4 +1,5 @@
 class SeatCategory < ActiveRecord::Base
-		validates :name, presence: true, format: { with: /\A[a-zA-Z]+\z/,
-    message: "only allows letters" }
+		validates :name, presence: true
+    has_many :tickets
+    
 end

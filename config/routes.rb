@@ -1,9 +1,19 @@
 AmericanAirlines::Application.routes.draw do
+  resources :tickets
+
+  resources :itineraries
+
+  resources :airplanes
+
+  resources :cities
+
   resources :customers
 
   resources :seat_categories
 
   resources :customer_categories
+  
+  root 'customers#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

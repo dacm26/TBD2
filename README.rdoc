@@ -7,7 +7,19 @@ Database Tables:
 
 * Customer Category: almacena las opciones del tipo de cliente. Ya sea Tercera Edad, Niño y Adulto.
 
-*Customer: almacena los clientes.
+* Customer: almacena los clientes.
+
+* City: ciudades a la cual se dirigen los clientes.
+
+* Airplanes: los aviones de la terminal.
+
+* Itineraries: Almacena el viaje de una ciudad a otra.
+
+* tickets: Es el boleto de los clientes.
+
+* tickets_itineraries: Almacena todos los boletos de los clientes que van a viajar.
+
+
 
 == NO LE DEN RAKE DB:MIGRATE HASTA QUE TERMINE TODAS LAS TABLAS!
 

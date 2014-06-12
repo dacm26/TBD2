@@ -15,7 +15,6 @@
     <% @customer_categories.each do |customer_category| %>
       <tr>
         <td><%= customer_category.name %></td>
-        <td><%= customer_category. %></td>
         <td><%= link_to 'Show', customer_category %></td>
         <td><%= link_to 'Edit', edit_customer_category_path(customer_category) %></td>
         <td><%= link_to 'Destroy', customer_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_origin_city: 1
+  id_destiny_city: 1
+  departure_time: 2014-06-11 19:32:58
+  arrival_time: 2014-06-11 19:32:58
+  id_airplane: 1
+
+two:
+  id_origin_city: 1
+  id_destiny_city: 1
+  departure_time: 2014-06-11 19:32:58
+  arrival_time: 2014-06-11 19:32:58
+  id_airplane: 1

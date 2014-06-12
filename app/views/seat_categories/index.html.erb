@@ -15,7 +15,6 @@
     <% @seat_categories.each do |seat_category| %>
       <tr>
         <td><%= seat_category.name %></td>
-        <td><%= seat_category. %></td>
         <td><%= link_to 'Show', seat_category %></td>
         <td><%= link_to 'Edit', edit_seat_category_path(seat_category) %></td>
         <td><%= link_to 'Destroy', seat_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>

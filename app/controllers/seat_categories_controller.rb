@@ -69,6 +69,6 @@ class SeatCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def seat_category_params
-      params.require(:seat_category).permit(:name, :)
+      params.require(:seat_category).permit(:name)
     end
 end
