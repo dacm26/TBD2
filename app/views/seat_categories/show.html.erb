@@ -1,10 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @seat_category.name %>
-</p>
+	<p>
+		<strong>Name:</strong>
+		<%= @seat_category.name %>
+	</p>
 
 
-<%= link_to 'Edit', edit_seat_category_path(@seat_category) %> |
-<%= link_to 'Back', seat_categories_path %>
+	<%= link_to 'Edit', edit_seat_category_path(@seat_category), class: 'button' %>
+	<%= link_to 'Back', seat_categories_path, class: 'button' %>
+</div>

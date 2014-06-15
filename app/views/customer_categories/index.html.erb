@@ -1,28 +1,31 @@
-<h1>Listing customer_categories</h1>
+<div class="row">
+	
+	<h1>Listing Customer Categories</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
 
-  <tbody>
-    <% @customer_categories.each do |customer_category| %>
-      <tr>
-        <td><%= customer_category.name %></td>
-        <td><%= link_to 'Show', customer_category %></td>
-        <td><%= link_to 'Edit', edit_customer_category_path(customer_category) %></td>
-        <td><%= link_to 'Destroy', customer_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+		<tbody>
+			<% @customer_categories.each do |customer_category| %>
+				<tr>
+					<td><%= customer_category.name %></td>
+					<td><%= link_to 'Show', customer_category %></td>
+					<td><%= link_to 'Edit', edit_customer_category_path(customer_category) %></td>
+					<td><%= link_to 'Destroy', customer_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-<br>
+	<br>
 
-<%= link_to 'New Customer category', new_customer_category_path %>
+	<%= link_to 'New Customer category', new_customer_category_path, class: 'button' %>
+</div>

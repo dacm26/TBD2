@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	<p id="notice"><%= notice %></p>
+	<h2>Name:</h2>
+	<h3><%= @city.name %></h3>
 
-<p>
-  <strong>Name:</strong>
-  <%= @city.name %>
-</p>
-
-<%= link_to 'Edit', edit_city_path(@city) %> |
-<%= link_to 'Back', cities_path %>
+	<%= link_to 'Edit', edit_city_path(@city), class: 'button' %>
+	<%= link_to 'Back', cities_path, class: 'button' %>
+</div>

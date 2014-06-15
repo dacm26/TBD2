@@ -1,14 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Model:</strong>
-  <%= @airplane.model %>
-</p>
-
-<p>
-  <strong>Capacity:</strong>
-  <%= @airplane.capacity %>
-</p>
-
-<%= link_to 'Edit', edit_airplane_path(@airplane) %> |
-<%= link_to 'Back', airplanes_path %>
+<div class="row">
+	<p id="notice"><%= notice %></p>
+	<div class="panel">
+			<h2>Model:</h2>
+			<h3><%= @airplane.model %></h3>
+			<h2>Capacity:</h2>
+			<h3><%= @airplane.capacity %></h3>
+	</div>
+	<%= link_to 'Edit', edit_airplane_path(@airplane), class: 'button' %>
+	<%= link_to 'Back', airplanes_path, class: 'button' %>
+</div>

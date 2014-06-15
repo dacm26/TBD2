@@ -14,6 +14,9 @@ group :development do
   gem "better_errors"
 end
 
+#jquery ui
+gem 'jquery-ui-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

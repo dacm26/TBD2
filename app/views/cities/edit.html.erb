@@ -1,6 +1,10 @@
-<h1>Editing city</h1>
+<div class="row">
+	<h1>Editing city</h1>
+</div>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Show', @city %> |
-<%= link_to 'Back', cities_path %>
+<div class="row">
+	<%= link_to 'Show', @city, class: 'button' %>
+	<%= link_to 'Back', cities_path, class: 'button' %>
+</div>
