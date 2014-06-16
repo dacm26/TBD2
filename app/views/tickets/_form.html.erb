@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= f.label :customer_category_id %><br>
-    <%= f.number_field :customer_category_id %>
+    <%= f.select :customer_category_id, options_for_select(CustomerCategory.all.map{|s|[s.name,s.id]}) %>
   </div>
   <div class="field">
     <%= f.label :seat_category_id %><br>
-    <%= f.number_field :seat_category_id %>
+    <%= f.select :seat_category_id, options_for_select(SeatCategory.all.map{|s|[s.name,s.id]}) %>
   </div>
   <div class="field">
     <%= f.label :customer_id %><br>
-    <%= f.number_field :customer_id %>
+    <%= f.select :customer_id, options_for_select(Customer.all.map{|s|[s.name,s.id]}) %>
   </div>
   <div class="field">
     <%= f.label :price %><br>

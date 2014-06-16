@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= f.label :origin_city_id %><br>
-    <%= f.number_field :origin_city_id %>
+    <%= f.select :origin_city_id, options_for_select(City.all.map{|s|[s.name,s.id]}) %>
   </div>
   <div class="field">
     <%= f.label :destiny_city_id %><br>
-    <%= f.number_field :destiny_city_id %>
+    <%= f.select :destiny_city_id, options_for_select(City.all.map{|s|[s.name,s.id]}) %>
   </div>
   <div class="field">
     <%= f.label :airplane_id %><br>
-    <%= f.number_field :airplane_id %>
+    <%= f.select :airplane_id, options_for_select(Airplane.all.map{|s|[s.name,s.id]}) %>
   </div>
   <div class="field">
     <%= f.label :departure_date %><br>
