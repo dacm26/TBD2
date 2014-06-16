@@ -1,28 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Departure date:</strong>
-  <%= @ticket.departure_date %>
-</p>
-
-<p>
-  <strong>Arrival date:</strong>
-  <%= @ticket.arrival_date %>
-</p>
-
-<p>
-  <strong>Id customer category:</strong>
+  <strong>Customer category:</strong>
   <%= @ticket.customer_category_id %>
 </p>
 
 <p>
-  <strong>Id seat category:</strong>
+  <strong>Seat category:</strong>
   <%= @ticket.seat_category_id %>
 </p>
 
 <p>
-  <strong>Id customer:</strong>
+  <strong>Customer:</strong>
   <%= @ticket.customer_id %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @ticket.price %>
 </p>
 
 <%= link_to 'Edit', edit_ticket_path(@ticket) %> |

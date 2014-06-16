@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+
 	belongs_to :customer
 	belongs_to :seat_category
 	belongs_to :customer_category

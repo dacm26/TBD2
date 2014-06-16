@@ -1,36 +1,39 @@
-<div class="row">
-	
-	<h1>Listing itineraries</h1>
+<h1>Listing itineraries</h1>
 
-	<table>
-		<thead>
-			<tr>
-				<th>Id origin city</th>
-				<th>Id destiny city</th>
-				<th>Departure time</th>
-				<th>Arrival time</th>
-				<th>Id airplane</th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
+<table>
+  <thead>
+    <tr>
+      <th>Origin city</th>
+      <th>Destiny city</th>
+      <th>Airplane</th>
+      <th>Departure date</th>
+      <th>Arrival date</th>
+      <th>Departure time</th>
+      <th>Arrival time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
-		<tbody>
-			<% @itineraries.each do |itinerary| %>
-				<tr>
-					<td><%= itinerary.origin_city_id %></td>
-					<td><%= itinerary.destiny_city_id %></td>
-					<td><%= itinerary.departure_time.to_formatted_s(:time) %></td>
-					<td><%= itinerary.arrival_time.to_formatted_s(:time) %></td>
-					<td><%= itinerary.airplane_id %></td>
-					<td><%= link_to 'Show', itinerary %></td>
-					<td><%= link_to 'Edit', edit_itinerary_path(itinerary) %></td>
-					<td><%= link_to 'Destroy', itinerary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+  <tbody>
+    <% @itineraries.each do |itinerary| %>
+      <tr>
+        <td><%= itinerary.origin_city_id %></td>
+        <td><%= itinerary.destiny_city_id %></td>
+        <td><%= itinerary.airplane_id %></td>
+        <td><%= itinerary.departure_date %></td>
+        <td><%= itinerary.arrival_date %></td>
+        <td><%= itinerary.departure_time %></td>
+        <td><%= itinerary.arrival_time %></td>
+        <td><%= link_to 'Show', itinerary %></td>
+        <td><%= link_to 'Edit', edit_itinerary_path(itinerary) %></td>
+        <td><%= link_to 'Destroy', itinerary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-	<%= link_to 'New Itinerary', new_itinerary_path, class: 'button' %>
-</div>
+<br>
+
+<%= link_to 'New Itinerary', new_itinerary_path %>

@@ -1,7 +1,7 @@
 AmericanAirlines::Application.routes.draw do
-  resources :tickets
-
   resources :itineraries
+
+  resources :tickets
 
   resources :airplanes
 

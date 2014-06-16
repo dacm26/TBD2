@@ -18,7 +18,7 @@ class ItinerariesControllerTest < ActionController::TestCase
 
   test "should create itinerary" do
     assert_difference('Itinerary.count') do
-      post :create, itinerary: { arrival_time: @itinerary.arrival_time, departure_time: @itinerary.departure_time, id_airplane: @itinerary.id_airplane, id_destiny_city: @itinerary.id_destiny_city, id_origin_city: @itinerary.id_origin_city }
+      post :create, itinerary: { airplane_id: @itinerary.airplane_id, arrival_date: @itinerary.arrival_date, arrival_time: @itinerary.arrival_time, departure_date: @itinerary.departure_date, departure_time: @itinerary.departure_time, destiny_city_id: @itinerary.destiny_city_id, origin_city_id: @itinerary.origin_city_id }
     end
 
     assert_redirected_to itinerary_path(assigns(:itinerary))
@@ -35,7 +35,7 @@ class ItinerariesControllerTest < ActionController::TestCase
   end
 
   test "should update itinerary" do
-    patch :update, id: @itinerary, itinerary: { arrival_time: @itinerary.arrival_time, departure_time: @itinerary.departure_time, id_airplane: @itinerary.id_airplane, id_destiny_city: @itinerary.id_destiny_city, id_origin_city: @itinerary.id_origin_city }
+    patch :update, id: @itinerary, itinerary: { airplane_id: @itinerary.airplane_id, arrival_date: @itinerary.arrival_date, arrival_time: @itinerary.arrival_time, departure_date: @itinerary.departure_date, departure_time: @itinerary.departure_time, destiny_city_id: @itinerary.destiny_city_id, origin_city_id: @itinerary.origin_city_id }
     assert_redirected_to itinerary_path(assigns(:itinerary))
   end
 

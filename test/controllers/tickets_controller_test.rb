@@ -18,7 +18,7 @@ class TicketsControllerTest < ActionController::TestCase
 
   test "should create ticket" do
     assert_difference('Ticket.count') do
-      post :create, ticket: { arrival_date: @ticket.arrival_date, departure_date: @ticket.departure_date, id_customer: @ticket.id_customer, id_customer_category: @ticket.id_customer_category, id_seat_category: @ticket.id_seat_category }
+      post :create, ticket: { customer_category_id: @ticket.customer_category_id, customer_id: @ticket.customer_id, price: @ticket.price, seat_category_id: @ticket.seat_category_id }
     end
 
     assert_redirected_to ticket_path(assigns(:ticket))
@@ -35,7 +35,7 @@ class TicketsControllerTest < ActionController::TestCase
   end
 
   test "should update ticket" do
-    patch :update, id: @ticket, ticket: { arrival_date: @ticket.arrival_date, departure_date: @ticket.departure_date, id_customer: @ticket.id_customer, id_customer_category: @ticket.id_customer_category, id_seat_category: @ticket.id_seat_category }
+    patch :update, id: @ticket, ticket: { customer_category_id: @ticket.customer_category_id, customer_id: @ticket.customer_id, price: @ticket.price, seat_category_id: @ticket.seat_category_id }
     assert_redirected_to ticket_path(assigns(:ticket))
   end
 
