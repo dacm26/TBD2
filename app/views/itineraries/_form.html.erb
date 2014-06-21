@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :airplane_id %><br>
-    <%= f.select :airplane_id, options_for_select(Airplane.all.map{|s|[s.name,s.id]}) %>
+    <%= f.select :airplane_id, options_for_select(Airplane.all.map{|s|[s.model,s.id]}) %>
   </div>
   <div class="field">
     <%= f.label :departure_date %><br>
