@@ -32,13 +32,13 @@ $('.type').change(function(){
 	}
 });
 
+var current = 1;
+
 $('.more').on('click',function(){
-	$('.case_3').children().each(function()
-	{
-		if( $(this).css('display') === 'none')
-		{
-			$(this).show();
-		}
-	});
-	$(this).hide();
+	
+	current++;
+	$('.multi' + current).show();
+	if (current === 4) {	
+		$(this).hide();
+	};
 });
