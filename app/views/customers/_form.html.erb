@@ -11,10 +11,13 @@
     </div>
   <% end %>
 
+<div class="row">
+ <div class="large-4 columns"> 
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  
   <div class="field">
     <%= f.label :passport %><br>
     <%= f.text_field :passport %>
@@ -30,8 +33,24 @@
     <div class="field">
     <%= f.label :email %><br>
     <%= f.email_field :email %>
+   </div>    
+    <div class="field">
+      <%= f.label :telephone %><br>
+    <%= text_field_tag :randomInput %>
+   </div>
+   <div class="field">
+     <%= f.label :card_Number %><br>
+    <%= text_field_tag :randomInput %>
   </div>
+  <div class="field">
+    <%= f.label :CSC %><br>
+    <%= text_field_tag :randomInput %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+  </div>
+</div>
+
 <% end %>
