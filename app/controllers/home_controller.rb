@@ -4,4 +4,8 @@ class HomeController < ApplicationController
 		@cities = City.all
 		@seats = SeatCategory.all
 	end
+
+	def metodo1
+		
+	end
 end
