@@ -1,12 +1,6 @@
 var current = 2;
 $(function() {
 	$('#datetime_regreso').attr('disabled',true);
-	$('#datetime_ida').datepicker();
-	$('#datetime_regreso').datepicker();
-	$('#multi_1_1').datepicker();
-	$('#multi_2_1').datepicker();
-	$('#multi_3_1').datepicker();
-	$('#multi_4_1').datepicker();
   });
 
 
@@ -45,3 +39,19 @@ $('.more').on('click',function(){
 	};
 });
 
+/*$('.search_flights').on('click', function(){
+	//validar que toda la informacion este correcta
+
+	var to_send = {};
+	to_send.push({type: $('.type').val()})
+
+	$.ajax(
+		{type: 'POST',
+		url: '/',
+		data: to_send
+		}).done(function(data){
+			console.log(data);
+		})
+});
+
+*/

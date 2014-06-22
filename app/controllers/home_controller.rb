@@ -5,7 +5,10 @@ class HomeController < ApplicationController
 		@seats = SeatCategory.all
 	end
 
-	def metodo1
-		
+	def find_fligths
+		respond_to do |format|
+			msg = { :status => "ok", :message => "Success!", :html => "<b>...</b>" }
+			format.json  { render :json => msg } # don't do msg.to_json
+		end
 	end
 end
