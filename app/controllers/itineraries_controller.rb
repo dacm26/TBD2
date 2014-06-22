@@ -4,9 +4,13 @@ class ItinerariesController < ApplicationController
   # GET /itineraries
   # GET /itineraries.json
   def index
-    @itineraries = Itinerary.all
+    
   end
 
+  def welchez
+    @itineraries = Itinerary.find(params[:search])
+  end
+  
   # GET /itineraries/1
   # GET /itineraries/1.json
   def show
