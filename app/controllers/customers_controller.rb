@@ -1,6 +1,13 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-
+    @@flight_type = nil
+		@@adult_quantity = nil
+		@@children_quantity = nil
+    @@itinerary = nil
+    @@price=nil
+    @@itinerary_1 = nil
+    @@itinerary_2 = nil
+    @@itinerary_3 = nil
   # GET /customers
   # GET /customers.json
   def index
@@ -15,6 +22,15 @@ class CustomersController < ApplicationController
   # GET /customers/new
   def new
     @customer = Customer.new
+    @@flight_type = params[:flight_type].to_i
+		@@adult_quantity = params[:adult_quantity]
+		@@children_quantity = params[:children_quantity]
+    @@itinerary = params[:itinerario]
+    @@price=params[:price]
+    @@itinerary_1 = params[:itinerario_1]
+    @@itinerary_2 = params[:itinerario_2]
+    @@itinerary_3 = params[:itinerario_3]
+    
   end
 
   # GET /customers/1/edit
@@ -70,5 +86,7 @@ class CustomersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
       params.require(:customer).permit(:name, :passport, :birth_date, :nationality, :email)
+      params.permit(:flight_type,:itinerario,:adult_quantity,:children_quantity,:price,:itinerario_1,:itinerario_2,:itinerario_3)
     end
+    
 end

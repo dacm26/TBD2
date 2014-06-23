@@ -39,9 +39,5 @@ $('.more').on('click',function(){
 	};
 });
 
-$('.search_flights').submit(function(e){
-	//event.preventDefault();
-	console.log(1);
-});
 
 

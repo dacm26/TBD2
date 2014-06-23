@@ -1,12 +1,19 @@
-  
+   
 	<% if @flight_type == 1 %>
 		<!--**********************************************************************************-->
 		<%= form_tag '/customer/new', :method => 'post' do %>
+      <%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
+      <%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
+      <%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
+      <%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
+      <%= hidden_field_tag 'price',nil,value: @price %>
+
 			<div class="row">
 				<div class="large-3 columns">
 					<label>Departure date: </label>
-					<span><%= @itinerario.departure_date %></span>
+					<span><%= @itinerario.departure_date %></span> 
 				</div>
+        
 				<div class="large-3 columns">
 					<label>Departure city: </label>
 					<span><%= City.find(@itinerario.origin_city_id).name %></span>
@@ -43,7 +50,7 @@
 			<div class="row">
 				<div class="large-4 columns">
 					<label>Adults quantity: </label>
-					<%= text_field @adult_quantity, :disabled => true %>
+					<span><%= @adult_quantity %></span>
 				</div>	
 				<div class="large-4 columns">
 					<label>Childrens quantity: </label>
@@ -77,14 +84,19 @@
 			<div class="row">
 				<h2>Going: </h2>
 			</div>
-		
+		  <%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
+      <%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
+      <%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
+      <%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
+      <%= hidden_field_tag 'price',nil,value: @price %>
+      <%= hidden_field_tag 'itinerario_1',nil,value: @itinerario_1.id %>
 			<div class="row">
 				<div class="large-3 columns">
 					<label>Departure date: </label>
 					<span><%= @itinerario.departure_date %></span>
 				</div>
 				<div class="large-3 columns">
-					<label>Departure city: </label>
+					<label>Departure city: </label>s
 					<span><%= City.find(@itinerario.origin_city_id).name %></span>
 				</div>
 				<div class="large-3 columns">
@@ -221,7 +233,15 @@
 		<% end %>
 
 	<% else %>
+      <%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
+      <%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
+      <%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
+      <%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
+      <%= hidden_field_tag 'price',nil,value: @price %>
+      <%= hidden_field_tag 'itinerario_1',nil,value: @itinerario_1.id %>
 		<%if !@fecha_regreso_3.to_s.blank?%>
+
+<%= hidden_field_tag 'itinerario_2',nil,value: @itinerario_2.id %>
 <!--**********************************************************************************-->
 			<%= form_tag '/customer/new', :method => 'post' do %>		
 				<div class="row">
@@ -447,8 +467,8 @@
 		<%end%>
 		<%if !@fecha_regreso_4.to_s.blank?%>
 			<!--**********************************************************************************-->
-			
 
+<%= hidden_field_tag 'itinerario_3',nil,value: @itinerario_3.id %>
 			<%= form_tag '/customer/new', :method => 'post' do %>		
 				<div class="row">
 					<h2>First fligth: </h2>
