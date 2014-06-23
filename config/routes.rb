@@ -2,7 +2,7 @@ AmericanAirlines::Application.routes.draw do
   
   root 'home#index'
   post '/' => 'home#find_fligth'
-  post '/itineraries' => 'itineraries#welchez'
+
   
   resources :itineraries
 

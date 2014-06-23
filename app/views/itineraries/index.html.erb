@@ -1,9 +1,39 @@
-<div class="row">
-<h2>Search here your flight status:</h2>
-  <%= form_for itineraries_path, method: 'post' do %>
-    <p>
-      <%= text_field_tag :search, params[:search] %>
-      <%= button_to "Search", :id => nil %>
-    </p>
-  <% end %>
-</div>
+<h1>Listing itineraries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Origin city</th>
+      <th>Destiny city</th>
+      <th>Airplane</th>
+      <th>Departure date</th>
+      <th>Arrival date</th>
+      <th>Departure time</th>
+      <th>Arrival time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @itineraries.each do |itinerary| %>
+      <tr>
+        <td><%= itinerary.origin_city_id %></td>
+        <td><%= itinerary.destiny_city_id %></td>
+        <td><%= itinerary.airplane_id %></td>
+        <td><%= itinerary.departure_date %></td>
+        <td><%= itinerary.arrival_date %></td>
+        <td><%= itinerary.departure_time %></td>
+        <td><%= itinerary.arrival_time %></td>
+        <td><%= link_to 'Show', itinerary %></td>
+        <td><%= link_to 'Edit', edit_itinerary_path(itinerary) %></td>
+        <td><%= link_to 'Destroy', itinerary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Itinerary', new_itinerary_path %>
