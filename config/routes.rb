@@ -3,7 +3,7 @@ AmericanAirlines::Application.routes.draw do
   root 'home#index'
   post '/' => 'home#find_fligth'
   
-  post '/customer/new' => 'customers#new'
+
 
   resources :itineraries
 

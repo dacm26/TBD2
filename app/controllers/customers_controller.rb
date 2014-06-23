@@ -17,19 +17,61 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+    customer=Customer.all.last
+   while 0 < @@adult_quantity  do
+     t1=Ticket.create(customer_category_id: 1,seat_category_id: 1,customer_id: customer.id,price: @@price)
+     t1.itineraries << @@itinerary
+       if !@@itinerary_1.blank?
+         t1.itineraries << @@itinerary_1
+       end
+       if !@@itinerary_2.blank?
+         t1.itineraries << @@itinerary_2
+       end
+       if !@@itinerary_3.blank?
+         t1.itineraries << @@itinerary_3
+       end
+     t1.save
+     @@adult_quantity=@@adult_quantity-1
+   end
+    @@price=@@price*0.85
+       while 0 < @@children_quantity  do
+     t1=Ticket.create(customer_category_id: 2,seat_category_id: 1,customer_id: customer.id,price: @@price)
+     t1.itineraries << @@itinerary
+       if !@@itinerary_1.blank?
+         t1.itineraries << @@itinerary_1
+       end
+       if !@@itinerary_2.blank?
+         t1.itineraries << @@itinerary_2
+       end
+       if !@@itinerary_3.blank?
+         t1.itineraries << @@itinerary_3
+       end
+     t1.save
+         @@children_quantity=@@children_quantity-1
+   end
+    redirect_to controller: 'home',action: 'index'
   end
 
   # GET /customers/new
   def new
     @customer = Customer.new
     @@flight_type = params[:flight_type].to_i
-		@@adult_quantity = params[:adult_quantity]
-		@@children_quantity = params[:children_quantity]
-    @@itinerary = params[:itinerario]
-    @@price=params[:price]
-    @@itinerary_1 = params[:itinerario_1]
-    @@itinerary_2 = params[:itinerario_2]
-    @@itinerary_3 = params[:itinerario_3]
+		@@adult_quantity = params[:adult_quantity].to_i
+		@@children_quantity = params[:children_quantity].to_i
+
+    @@price=params[:price].to_i
+    if !(params[:itinerario].to_i ==0)
+      @@itinerary = Itinerary.find(params[:itinerario].to_i)
+    end
+    if !(params[:itinerario_1].to_i ==0)
+      @@itinerary_1 = Itinerary.find(params[:itinerario_1].to_i)
+    end
+    if !(params[:itinerario_2].to_i ==0)
+      @@itinerary_2 = Itinerary.find(params[:itinerario_2].to_i)
+    end
+        if !(params[:itinerario_3].to_i ==0)
+      @@itinerary_3 = Itinerary.find(params[:itinerario_3].to_i)
+    end
     
   end
 
@@ -85,8 +127,8 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:name, :passport, :birth_date, :nationality, :email)
-      params.permit(:flight_type,:itinerario,:adult_quantity,:children_quantity,:price,:itinerario_1,:itinerario_2,:itinerario_3)
+      params.require(:customer).permit(:name, :passport, :birth_date, :nationality, :email,:flight_type,:itinerario,:adult_quantity,:children_quantity,:price,:itinerario_1,:itinerario_2,:itinerario_3)
+      
     end
     
 end
