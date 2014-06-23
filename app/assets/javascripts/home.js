@@ -4,7 +4,7 @@ $(function() {
   });
 
 
-$('.type').change(function(){
+$('#flight_type').change(function(){
 	switch ($(this).val()){
 		case "1":
 			$('#datetime_regreso').attr('disabled',true);
@@ -39,19 +39,12 @@ $('.more').on('click',function(){
 	};
 });
 
-/*$('.search_flights').on('click', function(){
+$('.search_flights').on('click', function(){
 	//validar que toda la informacion este correcta
 
-	var to_send = {};
-	to_send.push({type: $('.type').val()})
+	var valid = false;
 
-	$.ajax(
-		{type: 'POST',
-		url: '/',
-		data: to_send
-		}).done(function(data){
-			console.log(data);
-		})
+
+
 });
 
-*/

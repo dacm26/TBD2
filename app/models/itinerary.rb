@@ -2,8 +2,7 @@ class Itinerary < ActiveRecord::Base
 
 	belongs_to :city
 	belongs_to :airplane
-	has_and_belongs_to_many :tickets  
-
-  
+  has_many :voyages
+  has_many :tickets, through: :voyages  
   
 end

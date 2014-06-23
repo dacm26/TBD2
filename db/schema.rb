@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140622235717) do
+ActiveRecord::Schema.define(version: 20140623041346) do
 
   create_table "airplanes", force: true do |t|
     t.string   "model"
@@ -77,11 +77,12 @@ ActiveRecord::Schema.define(version: 20140622235717) do
   add_index "tickets", ["customer_id"], name: "index_tickets_on_customer_id", using: :btree
   add_index "tickets", ["seat_category_id"], name: "index_tickets_on_seat_category_id", using: :btree
 
-  create_table "tickets_itineraries", id: false, force: true do |t|
-    t.integer "ticket_id"
+  create_table "voyages", force: true do |t|
     t.integer "itinerary_id"
+    t.integer "ticket_id"
   end
 
-  add_index "tickets_itineraries", ["ticket_id", "itinerary_id"], name: "tickets_itineraries", unique: true, using: :btree
+  add_index "voyages", ["itinerary_id"], name: "index_voyages_on_itinerary_id", using: :btree
+  add_index "voyages", ["ticket_id"], name: "index_voyages_on_ticket_id", using: :btree
 
 end

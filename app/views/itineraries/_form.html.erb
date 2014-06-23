@@ -1,45 +1,47 @@
-<%= form_for(@itinerary) do |f| %>
-	<% if @itinerary.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@itinerary.errors.count, "error") %> prohibited this itinerary from being saved:</h2>
+<div class="row">
+	<%= form_for(@itinerary) do |f| %>
+		<% if @itinerary.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@itinerary.errors.count, "error") %> prohibited this itinerary from being saved:</h2>
 
-			<ul>
-			<% @itinerary.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-			</ul>
+				<ul>
+				<% @itinerary.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<div class="field">
+			<%= f.label :origin_city_id %><br>
+			<%= f.select :origin_city_id, options_for_select(City.all.map{|s|[s.name,s.id]}) %>
+		</div>
+		<div class="field">
+			<%= f.label :destiny_city_id %><br>
+			<%= f.select :destiny_city_id, options_for_select(City.all.map{|s|[s.name,s.id]}) %>
+		</div>
+		<div class="field">
+			<%= f.label :airplane_id %><br>
+			<%= f.select :airplane_id, options_for_select(Airplane.all.map{|s|[s.model,s.id]}) %>
+		</div>
+		<div class="field">
+			<%= f.label :departure_date %><br>
+			<%= f.date_select :departure_date %>
+		</div>
+		<div class="field">
+			<%= f.label :arrival_date %><br>
+			<%= f.date_select :arrival_date %>
+		</div>
+		<div class="field">
+			<%= f.label :departure_time %><br>
+			<%= f.time_select :departure_time %>
+		</div>
+		<div class="field">
+			<%= f.label :arrival_time %><br>
+			<%= f.time_select :arrival_time %>
+		</div>
+		<div class="actions">
+			<%= f.submit %>
 		</div>
 	<% end %>
-
-	<div class="field">
-		<%= f.label :origin_city_id %><br>
-		<%= f.select :origin_city_id, options_for_select(City.all.map{|s|[s.name,s.id]}) %>
-	</div>
-	<div class="field">
-		<%= f.label :destiny_city_id %><br>
-		<%= f.select :destiny_city_id, options_for_select(City.all.map{|s|[s.name,s.id]}) %>
-	</div>
-	<div class="field">
-		<%= f.label :airplane_id %><br>
-		<%= f.select :airplane_id, options_for_select(Airplane.all.map{|s|[s.model,s.id]}) %>
-	</div>
-	<div class="field">
-		<%= f.label :departure_date %><br>
-		<%= f.date_select :departure_date %>
-	</div>
-	<div class="field">
-		<%= f.label :arrival_date %><br>
-		<%= f.date_select :arrival_date %>
-	</div>
-	<div class="field">
-		<%= f.label :departure_time %><br>
-		<%= f.time_select :departure_time %>
-	</div>
-	<div class="field">
-		<%= f.label :arrival_time %><br>
-		<%= f.time_select :arrival_time %>
-	</div>
-	<div class="actions">
-		<%= f.submit %>
-	</div>
-<% end %>
+</div>
