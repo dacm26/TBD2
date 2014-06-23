@@ -34,12 +34,17 @@
     <div class="field">
     <%= f.label :email %><br>
     <%= f.email_field :email %>
+   </div>
+       <div class="field">
+         <%= f.label :card_number %><br>
+         <%= text_field_tag 'flight_type',nil,value: '' %> 
    </div>    
 
 
   <div class="actions">
     <%= f.submit %>
   </div>
+   
   </div>
 </div>
 

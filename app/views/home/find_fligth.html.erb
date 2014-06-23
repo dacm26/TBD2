@@ -1,19 +1,262 @@
-   
-	<% if @flight_type == 1 %>
-		<!--**********************************************************************************-->
-      <%= form_tag url_for(:controller => 'customers', :action => 'new'), :method => 'get' do %>
-      <%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
-      <%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
-      <%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
-      <%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
-      <%= hidden_field_tag 'price',nil,value: @price %>
+	   
+<% if @flight_type == 1 %>
+<!--**********************************************************************************-->
+	<%= form_tag url_for(:controller => 'customers', :action => 'new'), :method => 'get' do %>
+		<%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
+		<%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
+		<%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
+		<%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
+		<%= hidden_field_tag 'price',nil,value: @price %>
 
 			<div class="row">
+
 				<div class="large-3 columns">
 					<label>Departure date: </label>
 					<span><%= @itinerario.departure_date %></span> 
 				</div>
-        
+
+				<div class="large-3 columns">
+					<label>Departure city: </label>
+					<span><%= City.find(@itinerario.origin_city_id).name %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Departure time: </label>
+					<span><%= @itinerario.departure_time.to_s(:time) %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Airplane: </label>
+					<span><%= Airplane.find(@itinerario.airplane_id).model %></span>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="large-3 columns">
+					<label>Arrival date: </label>
+					<span><%= @itinerario.departure_date %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Arrival city: </label>
+					<span><%= City.find(@itinerario.destiny_city_id).name %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Arrival time: </label>
+					<span><%= @itinerario.arrival_time.to_s(:time) %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Adults Price: </label>
+					<span><%= @price %></span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-4 columns">
+					<label>Adults quantity: </label>
+					<span><%= @adult_quantity %></span>
+				</div>	
+				<div class="large-4 columns">
+					<label>Childrens quantity: </label>
+					<span><%= @children_quantity %></span>
+				</div>	
+				<div class="large-4 columns">
+					<% if @children_quantity.to_i != 0 %>
+					<label>Childrens discount</label>
+					<span><%= @price * 0.85 %></span>
+					<% else %>
+					<label>Childrens discount</label>
+					<label>0.0</label>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-6 columns">
+					<label>Total: </label>
+					<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
+					<%= @total %>
+				</div>	
+				<div class="large-6 columns">
+					<%= button_to 'Buy now', :class => 'button' %>
+				</div>	
+			</div>
+
+	<% end %>
+<% elsif @flight_type == 2 %>
+<!--**********************************************************************************-->
+	<%= form_tag url_for(:controller => 'customers', :action => 'new'), :method => 'get' do %>	
+		<%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
+		<%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
+		<%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
+		<%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
+		<%= hidden_field_tag 'price',nil,value: @price %>
+		<%= hidden_field_tag 'itinerario_1',nil,value: @itinerario_1.id %>
+
+		<div class="row">
+			<h2>Going: </h2>
+		</div>
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Departure date: </label>
+				<span><%= @itinerario.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure city: </label>s
+				<span><%= City.find(@itinerario.origin_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure time: </label>
+				<span><%= @itinerario.departure_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Airplane: </label>
+				<span><%= Airplane.find(@itinerario.airplane_id).model %></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Arrival date: </label>
+				<span><%= @itinerario.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival city: </label>
+				<span><%= City.find(@itinerario.destiny_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival time: </label>
+				<span><%= @itinerario.	arrival_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Adults Price: </label>
+				<span><%= @price %></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-4 columns">
+				<label>Adults quantity: </label>
+				<span><%= @adult_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<label>Childrens quantity: </label>
+				<span><%= @children_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<% if @children_quantity.to_i != 0 %>
+				<label>Childrens discount</label>
+				<span><%= @price * 0.85 %></span>
+				<% else %>
+				<label>Childrens discount</label>
+				<label>0.0</label>
+				<% end %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-6 columns">
+				<label>Total: </label>
+				<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
+				<%= @total %>
+			</div>	
+			<div class="large-6 columns">
+			</div>	
+		</div>
+
+		<div class="row">
+			<h2>Returning:</h2>
+		</div>
+
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Departure date: </label>
+				<span><%= @itinerario_1.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure city: </label>
+				<span><%= City.find(@itinerario_1.origin_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure time: </label>
+				<span><%= @itinerario_1.departure_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Airplane: </label>
+				<span><%= Airplane.find(@itinerario_1.airplane_id).model %></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Arrival date: </label>
+				<span><%= @itinerario_1.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival city: </label>
+				<span><%= City.find(@itinerario_1.destiny_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival time: </label>
+				<span><%= @itinerario_1.arrival_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Adults Price: </label>
+				<span><%= @price %></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-4 columns">
+				<label>Adults quantity: </label>
+				<span><%= @adult_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<label>Childrens quantity: </label>
+				<span><%= @children_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<% if @children_quantity.to_i != 0 %>
+				<label>Childrens discount</label>
+				<span><%= @price * 0.85 %></span>
+				<% else %>
+				<label>Childrens discount</label>
+				<label>0.0</label>
+				<% end %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-6 columns">
+				<label>Total: </label>
+				<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
+				<%= @total %>
+			</div>	
+			<div class="large-6 columns">
+				<%= button_to 'Buy now', :class => 'button' %>
+			</div>	
+		</div>
+	<% end %>
+
+<% else %>
+	<%if @fecha_regreso_3.to_s.blank? and @fecha_regreso_4.to_s.blank? %>
+<!--**********************************************************************************-->
+
+		<%= form_tag url_for(:controller => 'customers', :action => 'new'), :method => 'get' do %>		
+			<%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
+			<%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
+			<%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
+			<%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
+			<%= hidden_field_tag 'price',nil,value: @price %>
+			<%= hidden_field_tag 'itinerario_1',nil,value: @itinerario_1.id %>
+
+			<div class="row">
+				<h2>First fligth: </h2>
+			</div>
+
+			<div class="row">
+				<div class="large-3 columns">
+					<label>Departure date: </label>
+					<span><%= @itinerario.departure_date %></span>
+				</div>
 				<div class="large-3 columns">
 					<label>Departure city: </label>
 					<span><%= City.find(@itinerario.origin_city_id).name %></span>
@@ -44,9 +287,9 @@
 				<div class="large-3 columns">
 					<label>Adults Price: </label>
 					<span><%= @price %></span>
-	 			</div>
+				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="large-4 columns">
 					<label>Adults quantity: </label>
@@ -58,11 +301,11 @@
 				</div>	
 				<div class="large-4 columns">
 					<% if @children_quantity.to_i != 0 %>
-						<label>Childrens discount</label>
-						<span><%= @price * 0.85 %></span>
+					<label>Childrens discount</label>
+					<span><%= @price * 0.85 %></span>
 					<% else %>
-						<label>Childrens discount</label>
-						<label>0.0</label>
+					<label>Childrens discount</label>
+					<label>0.0</label>
 					<% end %>
 				</div>
 			</div>
@@ -73,93 +316,10 @@
 					<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
 					<%= @total %>
 				</div>	
-				<div class="large-6 columns">
-					<%= button_to 'Buy now', :class => 'button' %>
-				</div>	
-			</div>
-		<% end %>
-	<% elsif @flight_type == 2 %>
-	  	<!--**********************************************************************************-->
-	  	<%= form_tag url_for(:controller => 'customers', :action => 'new'), :method => 'get' do %>	
-			<div class="row">
-				<h2>Going: </h2>
-			</div>
-		  <%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
-      <%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
-      <%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
-      <%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
-      <%= hidden_field_tag 'price',nil,value: @price %>
-      <%= hidden_field_tag 'itinerario_1',nil,value: @itinerario_1.id %>
-			<div class="row">
-				<div class="large-3 columns">
-					<label>Departure date: </label>
-					<span><%= @itinerario.departure_date %></span>
-				</div>
-				<div class="large-3 columns">
-					<label>Departure city: </label>s
-					<span><%= City.find(@itinerario.origin_city_id).name %></span>
-				</div>
-				<div class="large-3 columns">
-					<label>Departure time: </label>
-					<span><%= @itinerario.departure_time.to_s(:time) %></span>
-				</div>
-				<div class="large-3 columns">
-					<label>Airplane: </label>
-					<span><%= Airplane.find(@itinerario.airplane_id).model %></span>
-				</div>
 			</div>
 
 			<div class="row">
-				<div class="large-3 columns">
-					<label>Arrival date: </label>
-					<span><%= @itinerario.departure_date %></span>
-				</div>
-				<div class="large-3 columns">
-					<label>Arrival city: </label>
-					<span><%= City.find(@itinerario.destiny_city_id).name %></span>
-				</div>
-				<div class="large-3 columns">
-					<label>Arrival time: </label>
-					<span><%= @itinerario.	arrival_time.to_s(:time) %></span>
-				</div>
-				<div class="large-3 columns">
-					<label>Adults Price: </label>
-					<span><%= @price %></span>
-	 			</div>
-			</div>
-			
-			<div class="row">
-				<div class="large-4 columns">
-					<label>Adults quantity: </label>
-					<span><%= @adult_quantity %></span>
-				</div>	
-				<div class="large-4 columns">
-					<label>Childrens quantity: </label>
-					<span><%= @children_quantity %></span>
-				</div>	
-				<div class="large-4 columns">
-					<% if @children_quantity.to_i != 0 %>
-						<label>Childrens discount</label>
-						<span><%= @price * 0.85 %></span>
-					<% else %>
-						<label>Childrens discount</label>
-						<label>0.0</label>
-					<% end %>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="large-6 columns">
-					<label>Total: </label>
-					<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
-					<%= @total %>
-				</div>	
-				<div class="large-6 columns">
-				</div>	
-			</div>
-
-			<div class="row">
-				<h2>Returning:</h2>
+				<h2>Second fligth:</h2>
 			</div>
 
 			<div class="row">
@@ -197,9 +357,9 @@
 				<div class="large-3 columns">
 					<label>Adults Price: </label>
 					<span><%= @price %></span>
-	 			</div>
+				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="large-4 columns">
 					<label>Adults quantity: </label>
@@ -211,11 +371,11 @@
 				</div>	
 				<div class="large-4 columns">
 					<% if @children_quantity.to_i != 0 %>
-						<label>Childrens discount</label>
-						<span><%= @price * 0.85 %></span>
+					<label>Childrens discount</label>
+					<span><%= @price * 0.85 %></span>
 					<% else %>
-						<label>Childrens discount</label>
-						<label>0.0</label>
+					<label>Childrens discount</label>
+					<label>0.0</label>
 					<% end %>
 				</div>
 			</div>
@@ -230,537 +390,532 @@
 					<%= button_to 'Buy now', :class => 'button' %>
 				</div>	
 			</div>
-		<% end %>
 
-	<% else %>
-      <%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
-      <%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
-      <%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
-      <%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
-      <%= hidden_field_tag 'price',nil,value: @price %>
-      <%= hidden_field_tag 'itinerario_1',nil,value: @itinerario_1.id %>
-		<%if !@fecha_regreso_3.to_s.blank?%>
+		<%end%>
 
-<%= hidden_field_tag 'itinerario_2',nil,value: @itinerario_2.id %>
+	<%elsif !@fecha_regreso_3.to_s.blank? and @fecha_regreso_4.to_s.blank?%>
 <!--**********************************************************************************-->
-			<%= form_tag url_for(:controller => 'customers', :action => 'new'), :method => 'get' do %>		
-				<div class="row">
-					<h2>First fligth: </h2>
+		<%= form_tag url_for(:controller => 'customers', :action => 'new'), :method => 'get' do %>		
+			<%= hidden_field_tag 'itinerario_2',nil,value: @itinerario_2.id %>
+			<%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
+			<%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
+			<%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
+			<%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
+			<%= hidden_field_tag 'price',nil,value: @price %>
+			<%= hidden_field_tag 'itinerario_1',nil,value: @itinerario_1.id %>
+			<div class="row">
+				<h2>First fligth: </h2>
+			</div>
+
+			<div class="row">
+				<div class="large-3 columns">
+					<label>Departure date: </label>
+					<span><%= @itinerario.departure_date %></span>
 				</div>
-
-				<div class="row">
-					<div class="large-3 columns">
-						<label>Departure date: </label>
-						<span><%= @itinerario.departure_date %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Departure city: </label>
-						<span><%= City.find(@itinerario.origin_city_id).name %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Departure time: </label>
-						<span><%= @itinerario.departure_time.to_s(:time) %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Airplane: </label>
-						<span><%= Airplane.find(@itinerario.airplane_id).model %></span>
-					</div>
+				<div class="large-3 columns">
+					<label>Departure city: </label>
+					<span><%= City.find(@itinerario.origin_city_id).name %></span>
 				</div>
-
-				<div class="row">
-					<div class="large-3 columns">
-						<label>Arrival date: </label>
-						<span><%= @itinerario.departure_date %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Arrival city: </label>
-						<span><%= City.find(@itinerario.destiny_city_id).name %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Arrival time: </label>
-						<span><%= @itinerario.arrival_time.to_s(:time) %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Adults Price: </label>
-						<span><%= @price %></span>
-		 			</div>
+				<div class="large-3 columns">
+					<label>Departure time: </label>
+					<span><%= @itinerario.departure_time.to_s(:time) %></span>
 				</div>
-				
-				<div class="row">
-					<div class="large-4 columns">
-						<label>Adults quantity: </label>
-						<span><%= @adult_quantity %></span>
-					</div>	
-					<div class="large-4 columns">
-						<label>Childrens quantity: </label>
-						<span><%= @children_quantity %></span>
-					</div>	
-					<div class="large-4 columns">
-						<% if @children_quantity.to_i != 0 %>
-							<label>Childrens discount</label>
-							<span><%= @price * 0.85 %></span>
-						<% else %>
-							<label>Childrens discount</label>
-							<label>0.0</label>
-						<% end %>
-					</div>
+				<div class="large-3 columns">
+					<label>Airplane: </label>
+					<span><%= Airplane.find(@itinerario.airplane_id).model %></span>
 				</div>
+			</div>
 
-				<div class="row">
-					<div class="large-6 columns">
-						<label>Total: </label>
-						<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
-						<%= @total %>
-					</div>	
-					<div class="large-6 columns">
-						<%= button_to 'Buy now', :class => 'button' %>
-					</div>	
+			<div class="row">
+				<div class="large-3 columns">
+					<label>Arrival date: </label>
+					<span><%= @itinerario.departure_date %></span>
 				</div>
-
-				<div class="row">
-					<h2>Second fligth:</h2>
+				<div class="large-3 columns">
+					<label>Arrival city: </label>
+					<span><%= City.find(@itinerario.destiny_city_id).name %></span>
 				</div>
-
-					<div class="row">
-						<div class="large-3 columns">
-							<label>Departure date: </label>
-							<span><%= @itinerario_1.departure_date %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Departure city: </label>
-							<span><%= City.find(@itinerario_1.origin_city_id).name %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Departure time: </label>
-							<span><%= @itinerario_1.departure_time.to_s(:time) %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Airplane: </label>
-							<span><%= Airplane.find(@itinerario_1.airplane_id).model %></span>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="large-3 columns">
-							<label>Arrival date: </label>
-							<span><%= @itinerario_1.departure_date %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Arrival city: </label>
-							<span><%= City.find(@itinerario_1.destiny_city_id).name %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Arrival time: </label>
-							<span><%= @itinerario_1.arrival_time.to_s(:time) %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Adults Price: </label>
-							<span><%= @price %></span>
-			 			</div>
-					</div>
-					
-					<div class="row">
-						<div class="large-4 columns">
-							<label>Adults quantity: </label>
-							<span><%= @adult_quantity %></span>
-						</div>	
-						<div class="large-4 columns">
-							<label>Childrens quantity: </label>
-							<span><%= @children_quantity %></span>
-						</div>	
-						<div class="large-4 columns">
-							<% if @children_quantity.to_i != 0 %>
-								<label>Childrens discount</label>
-								<span><%= @price * 0.85 %></span>
-							<% else %>
-								<label>Childrens discount</label>
-								<label>0.0</label>
-							<% end %>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="large-6 columns">
-							<label>Total: </label>
-							<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
-							<%= @total %>
-						</div>	
-						<div class="large-6 columns">
-							<%= button_to 'Buy now', :class => 'button' %>
-						</div>	
-					</div>
-				
-				<div class="row">
-					<h2>Third fligth:</h2>
+				<div class="large-3 columns">
+					<label>Arrival time: </label>
+					<span><%= @itinerario.arrival_time.to_s(:time) %></span>
 				</div>
+				<div class="large-3 columns">
+					<label>Adults Price: </label>
+					<span><%= @price %></span>
+				</div>
+			</div>
 
-					<div class="row">
-						<div class="large-3 columns">
-							<label>Departure date: </label>
-							<span><%= @itinerario_2.departure_date %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Departure city: </label>
-							<span><%= City.find(@itinerario_2.origin_city_id).name %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Departure time: </label>
-							<span><%= @itinerario_2.departure_time.to_s(:time) %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Airplane: </label>
-							<span><%= Airplane.find(@itinerario_2.airplane_id).model %></span>
-						</div>
-					</div>
+			<div class="row">
+				<div class="large-4 columns">
+					<label>Adults quantity: </label>
+					<span><%= @adult_quantity %></span>
+				</div>	
+				<div class="large-4 columns">
+					<label>Childrens quantity: </label>
+					<span><%= @children_quantity %></span>
+				</div>	
+				<div class="large-4 columns">
+					<% if @children_quantity.to_i != 0 %>
+					<label>Childrens discount</label>
+					<span><%= @price * 0.85 %></span>
+					<% else %>
+					<label>Childrens discount</label>
+					<label>0.0</label>
+					<% end %>
+				</div>
+			</div>
 
-					<div class="row">
-						<div class="large-3 columns">
-							<label>Arrival date: </label>
-							<span><%= @itinerario_2.departure_date %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Arrival city: </label>
-							<span><%= City.find(@itinerario_2.destiny_city_id).name %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Arrival time: </label>
-							<span><%= @itinerario_2.arrival_time.to_s(:time) %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Adults Price: </label>
-							<span><%= @price %></span>
-			 			</div>
-					</div>
-					
-					<div class="row">
-						<div class="large-4 columns">
-							<label>Adults quantity: </label>
-							<span><%= @adult_quantity %></span>
-						</div>	
-						<div class="large-4 columns">
-							<label>Childrens quantity: </label>
-							<span><%= @children_quantity %></span>
-						</div>	
-						<div class="large-4 columns">
-							<% if @children_quantity.to_i != 0 %>
-								<label>Childrens discount</label>
-								<span><%= @price * 0.85 %></span>
-							<% else %>
-								<label>Childrens discount</label>
-								<label>0.0</label>
-							<% end %>
-						</div>
-					</div>
+			<div class="row">
+				<div class="large-6 columns">
+					<label>Total: </label>
+					<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
+					<%= @total %>
+				</div>	
+			</div>
 
-					<div class="row">
-						<div class="large-6 columns">
-							<label>Total: </label>
-							<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
-							<%= @total %>
-						</div>	
-						<div class="large-6 columns">
-							<%= button_to 'Buy now', :class => 'button' %>
-						</div>	
-					</div>
+			<div class="row">
+				<h2>Second fligth:</h2>
+			</div>
 
-			<%end%>
+			<div class="row">
+				<div class="large-3 columns">
+					<label>Departure date: </label>
+					<span><%= @itinerario_1.departure_date %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Departure city: </label>
+					<span><%= City.find(@itinerario_1.origin_city_id).name %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Departure time: </label>
+					<span><%= @itinerario_1.departure_time.to_s(:time) %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Airplane: </label>
+					<span><%= Airplane.find(@itinerario_1.airplane_id).model %></span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-3 columns">
+					<label>Arrival date: </label>
+					<span><%= @itinerario_1.departure_date %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Arrival city: </label>
+					<span><%= City.find(@itinerario_1.destiny_city_id).name %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Arrival time: </label>
+					<span><%= @itinerario_1.arrival_time.to_s(:time) %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Adults Price: </label>
+					<span><%= @price %></span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-4 columns">
+					<label>Adults quantity: </label>
+					<span><%= @adult_quantity %></span>
+				</div>	
+				<div class="large-4 columns">
+					<label>Childrens quantity: </label>
+					<span><%= @children_quantity %></span>
+				</div>	
+				<div class="large-4 columns">
+					<% if @children_quantity.to_i != 0 %>
+					<label>Childrens discount</label>
+					<span><%= @price * 0.85 %></span>
+					<% else %>
+					<label>Childrens discount</label>
+					<label>0.0</label>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-6 columns">
+					<label>Total: </label>
+					<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
+					<%= @total %>
+				</div>	
+			</div>
+
+			<div class="row">
+				<h2>Third fligth:</h2>
+			</div>
+
+			<div class="row">
+				<div class="large-3 columns">
+					<label>Departure date: </label>
+					<span><%= @itinerario_2.departure_date %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Departure city: </label>
+					<span><%= City.find(@itinerario_2.origin_city_id).name %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Departure time: </label>
+					<span><%= @itinerario_2.departure_time.to_s(:time) %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Airplane: </label>
+					<span><%= Airplane.find(@itinerario_2.airplane_id).model %></span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-3 columns">
+					<label>Arrival date: </label>
+					<span><%= @itinerario_2.departure_date %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Arrival city: </label>
+					<span><%= City.find(@itinerario_2.destiny_city_id).name %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Arrival time: </label>
+					<span><%= @itinerario_2.arrival_time.to_s(:time) %></span>
+				</div>
+				<div class="large-3 columns">
+					<label>Adults Price: </label>
+					<span><%= @price %></span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-4 columns">
+					<label>Adults quantity: </label>
+					<span><%= @adult_quantity %></span>
+				</div>	
+				<div class="large-4 columns">
+					<label>Childrens quantity: </label>
+					<span><%= @children_quantity %></span>
+				</div>	
+				<div class="large-4 columns">
+					<% if @children_quantity.to_i != 0 %>
+					<label>Childrens discount</label>
+					<span><%= @price * 0.85 %></span>
+					<% else %>
+					<label>Childrens discount</label>
+					<label>0.0</label>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="large-6 columns">
+					<label>Total: </label>
+					<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
+					<%= @total %>
+				</div>	
+				<div class="large-6 columns">
+					<%= button_to 'Buy now', :class => 'button' %>
+				</div>	
+			</div>
 		<%end%>
-		<%if !@fecha_regreso_4.to_s.blank?%>
-			<!--**********************************************************************************-->
 
-<%= hidden_field_tag 'itinerario_3',nil,value: @itinerario_3.id %>
-			<%= form_tag url_for(:controller => 'customers', :action => 'new'), :method => 'get' do %>		
-				<div class="row">
-					<h2>First fligth: </h2>
-				</div>
+<%else%>
+<!--**********************************************************************************-->
+	<%= form_tag url_for(:controller => 'customers', :action => 'new'), :method => 'get' do %>		
+		<%= hidden_field_tag 'itinerario_3',nil,value: @itinerario_3.id %>
+		<%= hidden_field_tag 'itinerario_2',nil,value: @itinerario_2.id %>
+		<%= hidden_field_tag 'flight_type',nil,value: @flight_type %> 
+		<%= hidden_field_tag 'itinerario',nil,value: @itinerario.id %>
+		<%= hidden_field_tag 'adult_quantity',nil,value: @adult_quantity %>
+		<%= hidden_field_tag 'children_quantity',nil,value: @children_quantity %>
+		<%= hidden_field_tag 'price',nil,value: @price %>
+		<%= hidden_field_tag 'itinerario_1',nil,value: @itinerario_1.id %>
 
-				<div class="row">
-					<div class="large-3 columns">
-						<label>Departure date: </label>
-						<span><%= @itinerario.departure_date %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Departure city: </label>
-						<span><%= City.find(@itinerario.origin_city_id).name %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Departure time: </label>
-						<span><%= @itinerario.departure_time.to_s(:time) %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Airplane: </label>
-						<span><%= Airplane.find(@itinerario.airplane_id).model %></span>
-					</div>
-				</div>
+		<div class="row">
+			<h2>First fligth: </h2>
+		</div>
 
-				<div class="row">
-					<div class="large-3 columns">
-						<label>Arrival date: </label>
-						<span><%= @itinerario.departure_date %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Arrival city: </label>
-						<span><%= City.find(@itinerario.destiny_city_id).name %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Arrival time: </label>
-						<span><%= @itinerario.arrival_time.to_s(:time) %></span>
-					</div>
-					<div class="large-3 columns">
-						<label>Adults Price: </label>
-						<span><%= @price %></span>
-		 			</div>
-				</div>
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Departure date: </label>
+				<span><%= @itinerario.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure city: </label>
+				<span><%= City.find(@itinerario.origin_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure time: </label>
+				<span><%= @itinerario.departure_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Airplane: </label>
+				<span><%= Airplane.find(@itinerario.airplane_id).model %></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Arrival date: </label>
+				<span><%= @itinerario.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival city: </label>
+				<span><%= City.find(@itinerario.destiny_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival time: </label>
+				<span><%= @itinerario.arrival_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Adults Price: </label>
+				<span><%= @price %></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-4 columns">
+				<label>Adults quantity: </label>
+				<span><%= @adult_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<label>Childrens quantity: </label>
+				<span><%= @children_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<% if @children_quantity.to_i != 0 %>
+				<label>Childrens discount</label>
+				<span><%= @price * 0.85 %></span>
+				<% else %>
+				<label>Childrens discount</label>
+				<label>0.0</label>
+				<% end %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-6 columns">
+				<label>Total: </label>
+				<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
+				<%= @total %>
+			</div>	
 				
-				<div class="row">
-					<div class="large-4 columns">
-						<label>Adults quantity: </label>
-						<span><%= @adult_quantity %></span>
-					</div>	
-					<div class="large-4 columns">
-						<label>Childrens quantity: </label>
-						<span><%= @children_quantity %></span>
-					</div>	
-					<div class="large-4 columns">
-						<% if @children_quantity.to_i != 0 %>
-							<label>Childrens discount</label>
-							<span><%= @price * 0.85 %></span>
-						<% else %>
-							<label>Childrens discount</label>
-							<label>0.0</label>
-						<% end %>
-					</div>
-				</div>
+		</div>
 
-				<div class="row">
-					<div class="large-6 columns">
-						<label>Total: </label>
-						<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
-						<%= @total %>
-					</div>	
-					<div class="large-6 columns">
-						<%= button_to 'Buy now', :class => 'button' %>
-					</div>	
-				</div>
+		<div class="row">
+			<h2>Second fligth:</h2>
+		</div>
 
-				<div class="row">
-					<h2>Second fligth:</h2>
-				</div>
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Departure date: </label>
+				<span><%= @itinerario_1.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure city: </label>
+				<span><%= City.find(@itinerario_1.origin_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure time: </label>
+				<span><%= @itinerario_1.departure_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Airplane: </label>
+				<span><%= Airplane.find(@itinerario_1.airplane_id).model %></span>
+			</div>
+		</div>
 
-					<div class="row">
-						<div class="large-3 columns">
-							<label>Departure date: </label>
-							<span><%= @itinerario_1.departure_date %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Departure city: </label>
-							<span><%= City.find(@itinerario_1.origin_city_id).name %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Departure time: </label>
-							<span><%= @itinerario_1.departure_time.to_s(:time) %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Airplane: </label>
-							<span><%= Airplane.find(@itinerario_1.airplane_id).model %></span>
-						</div>
-					</div>
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Arrival date: </label>
+				<span><%= @itinerario_1.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival city: </label>
+				<span><%= City.find(@itinerario_1.destiny_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival time: </label>
+				<span><%= @itinerario_1.arrival_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Adults Price: </label>
+				<span><%= @price %></span>
+			</div>
+		</div>
 
-					<div class="row">
-						<div class="large-3 columns">
-							<label>Arrival date: </label>
-							<span><%= @itinerario_1.departure_date %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Arrival city: </label>
-							<span><%= City.find(@itinerario_1.destiny_city_id).name %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Arrival time: </label>
-							<span><%= @itinerario_1.arrival_time.to_s(:time) %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Adults Price: </label>
-							<span><%= @price %></span>
-			 			</div>
-					</div>
-					
-					<div class="row">
-						<div class="large-4 columns">
-							<label>Adults quantity: </label>
-							<span><%= @adult_quantity %></span>
-						</div>	
-						<div class="large-4 columns">
-							<label>Childrens quantity: </label>
-							<span><%= @children_quantity %></span>
-						</div>	
-						<div class="large-4 columns">
-							<% if @children_quantity.to_i != 0 %>
-								<label>Childrens discount</label>
-								<span><%= @price * 0.85 %></span>
-							<% else %>
-								<label>Childrens discount</label>
-								<label>0.0</label>
-							<% end %>
-						</div>
-					</div>
+		<div class="row">
+			<div class="large-4 columns">
+				<label>Adults quantity: </label>
+				<span><%= @adult_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<label>Childrens quantity: </label>
+				<span><%= @children_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<% if @children_quantity.to_i != 0 %>
+				<label>Childrens discount</label>
+				<span><%= @price * 0.85 %></span>
+				<% else %>
+				<label>Childrens discount</label>
+				<label>0.0</label>
+				<% end %>
+			</div>
+		</div>
 
-					<div class="row">
-						<div class="large-6 columns">
-							<label>Total: </label>
-							<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
-							<%= @total %>
-						</div>	
-						<div class="large-6 columns">
-							<%= button_to 'Buy now', :class => 'button' %>
-						</div>	
-					</div>
+		<div class="row">
+			<div class="large-6 columns">
+				<label>Total: </label>
+				<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
+				<%= @total %>
+			</div>	
 				
-				<div class="row">
-					<h2>Third fligth:</h2>
-				</div>
+		</div>
 
-					<div class="row">
-						<div class="large-3 columns">
-							<label>Departure date: </label>
-							<span><%= @itinerario_2.departure_date %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Departure city: </label>
-							<span><%= City.find(@itinerario_2.origin_city_id).name %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Departure time: </label>
-							<span><%= @itinerario_2.departure_time.to_s(:time) %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Airplane: </label>
-							<span><%= Airplane.find(@itinerario_2.airplane_id).model %></span>
-						</div>
-					</div>
+		<div class="row">
+			<h2>Third fligth:</h2>
+		</div>
 
-					<div class="row">
-						<div class="large-3 columns">
-							<label>Arrival date: </label>
-							<span><%= @itinerario_2.departure_date %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Arrival city: </label>
-							<span><%= City.find(@itinerario_2.destiny_city_id).name %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Arrival time: </label>
-							<span><%= @itinerario_2.arrival_time.to_s(:time) %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Adults Price: </label>
-							<span><%= @price %></span>
-			 			</div>
-					</div>
-					
-					<div class="row">
-						<div class="large-4 columns">
-							<label>Adults quantity: </label>
-							<span><%= @adult_quantity %></span>
-						</div>	
-						<div class="large-4 columns">
-							<label>Childrens quantity: </label>
-							<span><%= @children_quantity %></span>
-						</div>	
-						<div class="large-4 columns">
-							<% if @children_quantity.to_i != 0 %>
-								<label>Childrens discount</label>
-								<span><%= @price * 0.85 %></span>
-							<% else %>
-								<label>Childrens discount</label>
-								<label>0.0</label>
-							<% end %>
-						</div>
-					</div>
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Departure date: </label>
+				<span><%= @itinerario_2.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure city: </label>
+				<span><%= City.find(@itinerario_2.origin_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure time: </label>
+				<span><%= @itinerario_2.departure_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Airplane: </label>
+				<span><%= Airplane.find(@itinerario_2.airplane_id).model %></span>
+			</div>
+		</div>
 
-					<div class="row">
-						<div class="large-6 columns">
-							<label>Total: </label>
-							<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
-							<%= @total %>
-						</div>	
-						<div class="large-6 columns">
-							<%= button_to 'Buy now', :class => 'button' %>
-						</div>	
-					</div>
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Arrival date: </label>
+				<span><%= @itinerario_2.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival city: </label>
+				<span><%= City.find(@itinerario_2.destiny_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival time: </label>
+				<span><%= @itinerario_2.arrival_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Adults Price: </label>
+				<span><%= @price %></span>
+			</div>
+		</div>
 
-				<div class="row">
-					<h2>Fourth fligth:</h2>
-				</div>
+		<div class="row">
+			<div class="large-4 columns">
+				<label>Adults quantity: </label>
+				<span><%= @adult_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<label>Childrens quantity: </label>
+				<span><%= @children_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<% if @children_quantity.to_i != 0 %>
+				<label>Childrens discount</label>
+				<span><%= @price * 0.85 %></span>
+				<% else %>
+				<label>Childrens discount</label>
+				<label>0.0</label>
+				<% end %>
+			</div>
+		</div>
 
-					<div class="row">
-						<div class="large-3 columns">
-							<label>Departure date: </label>
-							<span><%= @itinerario_3.departure_date %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Departure city: </label>
-							<span><%= City.find(@itinerario_3.origin_city_id).name %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Departure time: </label>
-							<span><%= @itinerario_3.departure_time.to_s(:time) %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Airplane: </label>
-							<span><%= Airplane.find(@itinerario_3.airplane_id).model %></span>
-						</div>
-					</div>
+		<div class="row">
+			<div class="large-6 columns">
+				<label>Total: </label>
+				<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
+				<%= @total %>
+			</div>	
+				
+		</div>
 
-					<div class="row">
-						<div class="large-3 columns">
-							<label>Arrival date: </label>
-							<span><%= @itinerario_3.departure_date %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Arrival city: </label>
-							<span><%= City.find(@itinerario_3.destiny_city_id).name %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Arrival time: </label>
-							<span><%= @itinerario_3.arrival_time.to_s(:time) %></span>
-						</div>
-						<div class="large-3 columns">
-							<label>Adults Price: </label>
-							<span><%= @price %></span>
-			 			</div>
-					</div>
-					
-					<div class="row">
-						<div class="large-4 columns">
-							<label>Adults quantity: </label>
-							<span><%= @adult_quantity %></span>
-						</div>	
-						<div class="large-4 columns">
-							<label>Childrens quantity: </label>
-							<span><%= @children_quantity %></span>
-						</div>	
-						<div class="large-4 columns">
-							<% if @children_quantity.to_i != 0 %>
-								<label>Childrens discount</label>
-								<span><%= @price * 0.85 %></span>
-							<% else %>
-								<label>Childrens discount</label>
-								<label>0.0</label>
-							<% end %>
-						</div>
-					</div>
+		<div class="row">
+			<h2>Fourth fligth:</h2>
+		</div>
 
-					<div class="row">
-						<div class="large-6 columns">
-							<label>Total: </label>
-							<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
-							<%= @total %>
-						</div>	
-						<div class="large-6 columns">
-							<%= button_to 'Buy now', :class => 'button' %>
-						</div>	
-					</div>
-			<%end%>
-		<%end%>
-	<%end %>
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Departure date: </label>
+				<span><%= @itinerario_3.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure city: </label>
+				<span><%= City.find(@itinerario_3.origin_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Departure time: </label>
+				<span><%= @itinerario_3.departure_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Airplane: </label>
+				<span><%= Airplane.find(@itinerario_3.airplane_id).model %></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-3 columns">
+				<label>Arrival date: </label>
+				<span><%= @itinerario_3.departure_date %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival city: </label>
+				<span><%= City.find(@itinerario_3.destiny_city_id).name %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Arrival time: </label>
+				<span><%= @itinerario_3.arrival_time.to_s(:time) %></span>
+			</div>
+			<div class="large-3 columns">
+				<label>Adults Price: </label>
+				<span><%= @price %></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-4 columns">
+				<label>Adults quantity: </label>
+				<span><%= @adult_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<label>Childrens quantity: </label>
+				<span><%= @children_quantity %></span>
+			</div>	
+			<div class="large-4 columns">
+				<% if @children_quantity.to_i != 0 %>
+				<label>Childrens discount</label>
+				<span><%= @price * 0.85 %></span>
+				<% else %>
+				<label>Childrens discount</label>
+				<label>0.0</label>
+				<% end %>
+			</div>
+		</div>
+
+		<div class="row">
+	<div class="large-6 columns">
+		<label>Total: </label>
+		<% @total = ((@price * @adult_quantity.to_i) + ( @children_quantity.to_i * (@price * 0.85))) %>
+		<%= @total %>
+	</div>	
+	<div class="large-6 columns">
+		<%= button_to 'Buy now', :class => 'button' %>
+	</div>	
+		</div>
+
+	<%end%>
+<%end %>
+<%end %>
+

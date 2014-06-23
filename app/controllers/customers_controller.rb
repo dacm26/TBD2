@@ -18,8 +18,9 @@ class CustomersController < ApplicationController
   # GET /customers/1.json
   def show
     customer=Customer.all.last
+    CustomerMailer.buy_ticket_confirmation(customer).deliver
    while 0 < @@adult_quantity  do
-     t1=Ticket.create(customer_category_id: 1,seat_category_id: 1,customer_id: customer.id,price: @@price)
+     t1=Ticket.create(customer_category_id: 1,seat_category_id: 1,customer_id: @customer.id,price: @@price)
      t1.itineraries << @@itinerary
        if !@@itinerary_1.blank?
          t1.itineraries << @@itinerary_1
@@ -35,7 +36,7 @@ class CustomersController < ApplicationController
    end
     @@price=@@price*0.85
        while 0 < @@children_quantity  do
-     t1=Ticket.create(customer_category_id: 2,seat_category_id: 1,customer_id: customer.id,price: @@price)
+     t1=Ticket.create(customer_category_id: 2,seat_category_id: 1,customer_id: @customer.id,price: @@price)
      t1.itineraries << @@itinerary
        if !@@itinerary_1.blank?
          t1.itineraries << @@itinerary_1
@@ -86,6 +87,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
+        
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @customer }
       else
