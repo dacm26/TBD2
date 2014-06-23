@@ -1,5 +1,7 @@
+<div class="row">
 <h1>Listing itineraries</h1>
 
+<div>
 <table>
   <thead>
     <tr>
@@ -13,15 +15,16 @@
       <th></th>
       <th></th>
       <th></th>
+      
     </tr>
   </thead>
 
   <tbody>
     <% @itineraries.each do |itinerary| %>
       <tr>
-        <td><%= itinerary.origin_city_id %></td>
-        <td><%= itinerary.destiny_city_id %></td>
-        <td><%= itinerary.airplane_id %></td>
+        <td><%= City.find(itinerary.origin_city_id).name %></td>
+        <td><%= City.find(itinerary.destiny_city_id).name %></td>
+        <td><%= Airplane.find(itinerary.airplane_id).model %></td>
         <td><%= itinerary.departure_date %></td>
         <td><%= itinerary.arrival_date %></td>
         <td><%= itinerary.departure_time %></td>
@@ -29,11 +32,16 @@
         <td><%= link_to 'Show', itinerary %></td>
         <td><%= link_to 'Edit', edit_itinerary_path(itinerary) %></td>
         <td><%= link_to 'Destroy', itinerary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
-<%= link_to 'New Itinerary', new_itinerary_path %>
+  <%= link_to 'New Itinerary', new_itinerary_path %>
+
+  
+</div>

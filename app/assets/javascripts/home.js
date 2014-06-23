@@ -39,12 +39,9 @@ $('.more').on('click',function(){
 	};
 });
 
-$('.search_flights').on('click', function(){
-	//validar que toda la informacion este correcta
-
-	var valid = false;
-
-
-
+$('.search_flights').submit(function(e){
+	//event.preventDefault();
+	console.log(1);
 });
+
 
