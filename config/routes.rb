@@ -1,15 +1,9 @@
 AmericanAirlines::Application.routes.draw do
   
   root 'home#index'
-<<<<<<< HEAD
-
-  post '/' => 'home#find_fligths'
-
-=======
-  
+  post '/' => 'home#find_fligth'
   post '/itineraries' => 'itineraries#welchez'
   
->>>>>>> 99109b962e0921d88c38c7ba455f95f523ed1534
   resources :itineraries
 
   resources :tickets
@@ -24,11 +18,6 @@ AmericanAirlines::Application.routes.draw do
 
   resources :customer_categories
   
-<<<<<<< HEAD
-=======
-  post '/itineraries/search' => 'itineraries#welchez'
->>>>>>> 99109b962e0921d88c38c7ba455f95f523ed1534
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
