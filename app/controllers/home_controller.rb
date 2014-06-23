@@ -13,21 +13,21 @@ class HomeController < ApplicationController
 		@flight_type = params[:flight_type]
 		@adult_quantity = params[:adult_quantity]
 		@children_quantity = params[:children_quantity]
-		@city_ida = params[:ida]
-		@city_regreso = params[:regreso]
+		@city_ida = params[:ida].first
+		@city_regreso = params[:regreso].first
 		@fecha_ida = params[:datetime_ida]
 		@fecha_regreso = params[:datetime_regreso]
-		@city_ida_1 = params[:ida_1]
-		@city_regreso_1 = params[:regreso_1]
+		@city_ida_1 = params[:ida_1].first
+		@city_regreso_1 = params[:regreso_1].first
 		@fecha_regreso_1 = params[:multi_1_1]
-		@city_ida_1 = params[:ida_2]
-		@city_regreso_1 = params[:regreso_2]
+		@city_ida_1 = params[:ida_2].first
+		@city_regreso_1 = params[:regreso_2].first
 		@fecha_regreso_1 = params[:multi_2_1]
-		@city_ida_1 = params[:ida_3]
-		@city_regreso_1 = params[:regreso_3]
+		@city_ida_1 = params[:ida_3].first
+		@city_regreso_1 = params[:regreso_3].first
 		@fecha_regreso_1 = params[:multi_3_1]
-		@city_ida_1 = params[:ida_4]
-		@city_regreso_1 = params[:regreso_4]
+		@city_ida_1 = params[:ida_4].first
+		@city_regreso_1 = params[:regreso_4].first
 		@fecha_regreso_1 = params[:multi_4_1]
 
 
