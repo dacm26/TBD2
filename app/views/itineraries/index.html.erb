@@ -27,8 +27,8 @@
         <td><%= Airplane.find(itinerary.airplane_id).model %></td>
         <td><%= itinerary.departure_date %></td>
         <td><%= itinerary.arrival_date %></td>
-        <td><%= itinerary.departure_time %></td>
-        <td><%= itinerary.arrival_time %></td>
+        <td><%= itinerary.departure_time.to_s(:time) %></td>
+        <td><%= itinerary.arrival_time.to_s(:time) %></td>
         <!-- <td><%= link_to 'Show', itinerary %></td>
         <td><%= link_to 'Edit', edit_itinerary_path(itinerary) %></td>
         <td><%= link_to 'Destroy', itinerary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
