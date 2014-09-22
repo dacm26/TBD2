@@ -17,8 +17,8 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    customer=Customer.all.last
-    CustomerMailer.buy_ticket_confirmation(customer).deliver
+    @customer=Customer.all.last
+    
    while 0 < @@adult_quantity  do
      t1=Ticket.create(customer_category_id: 1,seat_category_id: 1,customer_id: @customer.id,price: @@price)
      t1.itineraries << @@itinerary
@@ -50,6 +50,16 @@ class CustomersController < ApplicationController
      t1.save
          @@children_quantity=@@children_quantity-1
    end
+    
+    @flight_type_1=@@flight_type 
+		@adult_quantity_1=@@adult_quantity 
+		@children_quantity_1=@@children_quantity 
+    @itinerary_1=@@itinerary 
+    @price_1=@@price
+    @itinerary_1_1=@@itinerary_1 
+    @itinerary_2_1=@@itinerary_2 
+    @itinerary_3_1=@@itinerary_3 
+    CustomerMailer.buy_ticket_confirmation(@customer).deliver
     redirect_to controller: 'home',action: 'index'
   end
 

@@ -1,8 +1,8 @@
 class CustomerMailer < ActionMailer::Base
-  default from: "joelpineda94@gmail.com"
+  default from: "hyperflygth@gmail.com"
   
   def buy_ticket_confirmation(customer)
     @customer = customer
-    mail(:to => customer.email, :subject => "You Bought a ticket in HyperFlygth")  
+    mail(:to => @customer.email, :subject => "You Bought a ticket in HyperFlygth")  
   end 
 end
